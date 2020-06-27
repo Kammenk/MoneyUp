@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignInActivity"
+    android:background="@android:color/white"
+    >
+
+    <LinearLayout
+        android:id="@+id/loginHolder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/registrationHolder"
+        >
+
+        <TextView
+            android:id="@+id/signInTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/rubik_medium"
+            android:paddingVertical="10dp"
+            android:text="Sign In"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+
+            android:textSize="40sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/socialLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+
+            android:gravity="center"
+            android:layout_marginHorizontal="15dp"
+            android:paddingVertical="20dp"
+            android:paddingHorizontal="15dp"
+            app:layout_constraintTop_toBottomOf="@id/signUnTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            >
+
+            <ImageButton
+                android:id="@+id/sign_in_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/google_icon_small"
+                android:background="@drawable/google_button_background"
+
+                android:layout_marginHorizontal="10dp"
+                android:paddingVertical="10dp"
+                android:layout_weight="1"
+                />
+
+            <ImageButton
+                android:id="@+id/login_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/ic_facebook"
+                android:background="@drawable/facebook_button_background"
+
+                android:layout_marginHorizontal="10dp"
+                android:paddingVertical="10dp"
+                android:layout_weight="1"
+                />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/orTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="or"
+            android:textSize="20sp"
+            android:textColor="@android:color/black"
+            android:textAlignment="center"
+            android:fontFamily="@font/rubik"
+
+            app:layout_constraintTop_toBottomOf="@id/socialLogin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <EditText
+            android:id="@+id/signInUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Username"
+            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="40dp"
+            android:background="@drawable/login_field_background"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="10dp"
+
+            app:layout_constraintTop_toBottomOf="@id/orTxt"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <EditText
+            android:id="@+id/signInPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:layout_marginVertical="10dp"
+            android:layout_marginHorizontal="40dp"
+            android:background="@drawable/login_field_background"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="10dp"
+
+            android:drawableEnd="@drawable/ic_remove_red_eye"
+            app:layout_constraintTop_toBottomOf="@id/signUpUsername"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <Button
+            android:id="@+id/signIndBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sign In"
+            android:fontFamily="@font/rubik"
+            android:textColor="@android:color/white"
+            android:background="@drawable/app_button_background"
+            android:elevation="0dp"
+
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="40dp"
+            app:layout_constraintTop_toBottomOf="@id/signInPassword"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+    </LinearLayout>
+
+    <View
+        style="@style/Divider"
+        android:layout_marginVertical="20dp"
+        android:layout_marginHorizontal="20dp"
+        app:layout_constraintBottom_toTopOf="@id/registrationHolder"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <LinearLayout
+        android:id="@+id/registrationHolder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+
+        android:paddingHorizontal="20dp"
+        android:paddingBottom="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/rubik"
+            android:gravity="end"
+
+            android:text="Don't have an account?"
+            android:textColor="@android:color/black" />
+
+        <Button
+            android:id="@+id/appSignIn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sign Up"
+            android:textColor="@android:color/white"
+            android:layout_gravity="center"
+            android:fontFamily="@font/rubik"
+
+            android:background="@drawable/signin_button_background"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="5dp"
+            />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
