@@ -1,14 +1,15 @@
 package com.example.moneyup
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.github.mikephil.charting.charts.PieChart
+import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
-import com.github.mikephil.charting.utils.ColorTemplate
+
 
 class OverviewActivity : AppCompatActivity() {
 
@@ -23,36 +24,19 @@ class OverviewActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         val pieChart = findViewById<PieChart>(R.id.pieChart)
-
-        var pieList = arrayListOf<PieEntry>()
-        pieList.add(PieEntry(200f, "2016"))
-        pieList.add(PieEntry(100f, "2017"))
-        pieList.add(PieEntry(300f, "2018"))
-        pieList.add(PieEntry(430f, "2019"))
-        pieList.add(PieEntry(230f, "2020"))
+        var expenses = 0
 
 
-        val pieDataSet = PieDataSet(pieList, "pieList")
-        pieDataSet.colors = ColorTemplate.COLORFUL_COLORS.toMutableList()
-        pieDataSet.valueTextSize = 16f
 
-        val pieData = PieData(pieDataSet)
+        var sampleRecyclerList = arrayListOf<CategoryItem>()
+        //val categoryItem = CategoryItem("red","sda","asdas",123,"askjdal")
+        sampleRecyclerList.add(CategoryItem("#25BD37","ic_shopping_basket","Shopping",250,"Some note"))
+        sampleRecyclerList.add(CategoryItem("#2562BD","ic_person_outline","Leisure",75,"Some note"))
+        sampleRecyclerList.add(CategoryItem("#2562BD","ic_lock_outline","Bills",111,"Some note"))
+        sampleRecyclerList.add(CategoryItem("#25BD37","ic_shopping_basket","Vacation",444,"Some note"))
 
-        pieChart.data = pieData
-        pieChart.description.isEnabled = true
-        pieChart.centerText = "This month's overview"
-        pieChart.setCenterTextSize(20f)
-        pieChart.animate()
-
-        var sampleRecyclerList = arrayOf<String>("Transport","Leisure","Groceries","Bills","Sport")
-
-//        sampleRecyclerList.add("Transport")
-//        sampleRecyclerList.add("Leisure")
-//        sampleRecyclerList.add("Groceries")
-//        sampleRecyclerList.add("Bills")
-//        sampleRecyclerList.add("Sport")
-
-
+        var colorsArr = IntArray(sampleRecyclerList.size)
+        var savedColorsArr = intArrayOf(R.color.colorAlt,R.color.colorMain)
         viewManager = LinearLayoutManager(this)
         viewAdapter = MyAdapter(sampleRecyclerList)
 
@@ -68,5 +52,52 @@ class OverviewActivity : AppCompatActivity() {
             adapter = viewAdapter
 
         }
+
+        var pieList = arrayListOf<PieEntry>()
+        for(x in 0 until sampleRecyclerList.size){
+            var colorToAdd = 0
+            pieList.add(PieEntry(sampleRecyclerList.get(x).mSum.toFloat(),sampleRecyclerList.get(x).mTitle))
+            expenses += sampleRecyclerList.get(x).mSum
+            var colorFromCategories = sampleRecyclerList.get(x).mColor
+            var colorFromCatTrimmed = colorFromCategories.toLowerCase().replace("#","").trim()
+            for(x in savedColorsArr.indices) {
+                var colorConverted = resources.getString(savedColorsArr[x]).substring(3,resources.getString(R.color.colorAlt.toString().toInt()).length)
+                if(colorFromCatTrimmed.equals(colorConverted)){
+                    colorToAdd = savedColorsArr[x]
+                } else {
+                    continue
+                }
+            }
+
+            colorsArr[x] = colorToAdd
+        }
+        var colorRes: String = resources.getString(R.color.colorAlt.toString().toInt()).substring(3,resources.getString(R.color.colorAlt.toString().toInt()).toString().length)
+        var colorTrim: String = "#25BD37".toLowerCase().replace("#","").trim()
+        println("COLOR RES " + colorRes)
+        println("COLOR TRIMMED " + colorTrim)
+        println("Equal: " + colorRes.equals(colorTrim))
+
+
+        val pieDataSet = PieDataSet(pieList, "pieList")
+        pieDataSet.setColors(colorsArr,this)
+        pieDataSet.valueTextSize = 16f
+        pieDataSet.sliceSpace = 2f
+
+        val pieData = PieData(pieDataSet)
+
+        pieChart.data = pieData
+
+        pieChart.setDrawEntryLabels(false)
+        pieChart.description.isEnabled = false
+        pieChart.centerText = "Expenses " + "\n" +
+                "$expenses"
+
+        pieChart.setCenterTextSize(20f)
+
+        val overviewPieLegend: Legend = pieChart.legend
+        overviewPieLegend.isEnabled = false
+        //overviewPieLegend.setDrawInside(false)
+
+        pieChart.animate()
     }
 }

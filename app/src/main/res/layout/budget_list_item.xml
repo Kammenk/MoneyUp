@@ -5,26 +5,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:layout_marginHorizontal="10dp"
-    android:layout_marginVertical="5dp"
+    android:layout_marginVertical="2.5dp"
     android:padding="5dp"
     android:background="@drawable/budget_list_item_background"
     >
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/budgetCardBackgroundColor"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_gravity="center_vertical"
         android:layout_marginEnd="15dp"
         app:cardElevation="0dp"
-        android:backgroundTint="@color/colorAlt"
         app:cardCornerRadius="100dp"
+        app:cardBackgroundColor="@color/colorAlt"
         >
 
         <ImageView
-            android:id="@+id/budget_list_icon"
+            android:id="@+id/budgetIcon"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@drawable/ic_shopping_basket"
+            android:background="@drawable/ic_shopping_basket"
             android:layout_gravity="center"
             />
 
@@ -37,6 +38,7 @@
         android:layout_weight="1"
         >
         <TextView
+            android:id="@+id/budgetCategoryTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Shopping"
@@ -51,6 +53,7 @@
                 android:text="Total spent: "
                 />
             <TextView
+                android:id="@+id/budgetSum"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="350"
@@ -66,6 +69,12 @@
         android:elevation="0dp"
         android:layout_gravity="center_vertical"
         />
+
+    <EditText
+        android:visibility="gone"
+        android:id="@+id/budgetNote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
 
 
