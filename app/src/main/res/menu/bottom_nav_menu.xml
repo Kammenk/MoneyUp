@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/accounts"
+        android:title="Accounts"
+        android:icon="@drawable/ic_accounts"
+        app:showAsAction="ifRoom"
+        />
+    <item
+        android:id="@+id/overview"
+        android:title="Overview"
+        android:icon="@drawable/ic_overview"
+        app:showAsAction="ifRoom"
+        />
+    <item
+        android:id="@+id/transactions"
+        android:title="Transactions"
+        android:icon="@drawable/ic_transactions"
+        app:showAsAction="ifRoom"
+        />
+</menu>

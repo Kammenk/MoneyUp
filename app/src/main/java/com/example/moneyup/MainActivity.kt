@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
     private fun moveForward(){
 
         val delay: Long = 1500
-        val intent = Intent(this,LoginActivity::class.java)
+        val intent = Intent(this,OverviewActivity::class.java)
         Timer().schedule(delay) {
             startActivity(intent)
         }

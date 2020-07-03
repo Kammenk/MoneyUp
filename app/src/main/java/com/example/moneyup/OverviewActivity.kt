@@ -9,6 +9,7 @@ import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
+import java.util.*
 
 
 class OverviewActivity : AppCompatActivity() {
@@ -28,15 +29,21 @@ class OverviewActivity : AppCompatActivity() {
 
 
 
-        var sampleRecyclerList = arrayListOf<CategoryItem>()
+        val sampleRecyclerList = arrayListOf<CategoryItem>()
         //val categoryItem = CategoryItem("red","sda","asdas",123,"askjdal")
-        sampleRecyclerList.add(CategoryItem("#25BD37","ic_shopping_basket","Shopping",250,"Some note"))
-        sampleRecyclerList.add(CategoryItem("#2562BD","ic_person_outline","Leisure",75,"Some note"))
-        sampleRecyclerList.add(CategoryItem("#2562BD","ic_lock_outline","Bills",111,"Some note"))
-        sampleRecyclerList.add(CategoryItem("#25BD37","ic_shopping_basket","Vacation",444,"Some note"))
+        sampleRecyclerList.add(CategoryItem("#25BD37","ic_shopping_basket","Shopping",110,"Some note"))
+        sampleRecyclerList.add(CategoryItem("#2562BD","ic_movie_filter","Leisure",0,"Some note"))
+        sampleRecyclerList.add(CategoryItem("#BD258A","ic_shopping_cart","Groceries",0,"Some note"))
+        sampleRecyclerList.add(CategoryItem("#BD9725","ic_restaurant","Restaurant",0,"Some note"))
+        sampleRecyclerList.add(CategoryItem("#B8BD25","ic_card_giftcard","Gifts",0,"Some note"))
+        sampleRecyclerList.add(CategoryItem("#BD2553","ic_people_outline","Family",0,"Some note"))
+        sampleRecyclerList.add(CategoryItem("#6725BD","ic_beach_access","Vacation",0,"Some note"))
 
-        var colorsArr = IntArray(sampleRecyclerList.size)
-        var savedColorsArr = intArrayOf(R.color.colorAlt,R.color.colorMain)
+        val colorsArr = IntArray(sampleRecyclerList.size)
+        val defColorsArr = IntArray(1)
+        defColorsArr[0] = R.color.colorDefaultSlice
+        val savedColorsArr = intArrayOf(R.color.colorAlt,R.color.colorMain,R.color.colorCategoryOne,R.color.colorCategoryTwo,
+            R.color.colorCategoryThree,R.color.colorCategoryFour,R.color.colorCategoryFive,R.color.colorCategorySix)
         viewManager = LinearLayoutManager(this)
         viewAdapter = MyAdapter(sampleRecyclerList)
 
@@ -53,16 +60,16 @@ class OverviewActivity : AppCompatActivity() {
 
         }
 
-        var pieList = arrayListOf<PieEntry>()
+        val pieList = arrayListOf<PieEntry>()
         for(x in 0 until sampleRecyclerList.size){
             var colorToAdd = 0
-            pieList.add(PieEntry(sampleRecyclerList.get(x).mSum.toFloat(),sampleRecyclerList.get(x).mTitle))
-            expenses += sampleRecyclerList.get(x).mSum
-            var colorFromCategories = sampleRecyclerList.get(x).mColor
-            var colorFromCatTrimmed = colorFromCategories.toLowerCase().replace("#","").trim()
+            pieList.add(PieEntry(sampleRecyclerList[x].mSum.toFloat(), sampleRecyclerList[x].mTitle))
+            expenses += sampleRecyclerList[x].mSum
+            val colorFromCategories = sampleRecyclerList[x].mColor
+            val colorFromCatTrimmed = colorFromCategories.toLowerCase().replace("#","").trim()
             for(x in savedColorsArr.indices) {
-                var colorConverted = resources.getString(savedColorsArr[x]).substring(3,resources.getString(R.color.colorAlt.toString().toInt()).length)
-                if(colorFromCatTrimmed.equals(colorConverted)){
+                val colorConverted = resources.getString(savedColorsArr[x]).substring(3,resources.getString(R.color.colorAlt.toString().toInt()).length)
+                if(colorFromCatTrimmed == colorConverted){
                     colorToAdd = savedColorsArr[x]
                 } else {
                     continue
@@ -71,15 +78,17 @@ class OverviewActivity : AppCompatActivity() {
 
             colorsArr[x] = colorToAdd
         }
-        var colorRes: String = resources.getString(R.color.colorAlt.toString().toInt()).substring(3,resources.getString(R.color.colorAlt.toString().toInt()).toString().length)
-        var colorTrim: String = "#25BD37".toLowerCase().replace("#","").trim()
-        println("COLOR RES " + colorRes)
-        println("COLOR TRIMMED " + colorTrim)
-        println("Equal: " + colorRes.equals(colorTrim))
+        val colorRes: String = resources.getString(R.color.colorAlt.toString().toInt()).substring(3,resources.getString(R.color.colorAlt.toString().toInt()).length)
+        val colorTrim: String = "#25BD37".toLowerCase(Locale.ROOT).replace("#","").trim()
+        println("COLOR RES $colorRes")
+        println("COLOR TRIMMED $colorTrim")
+        println("Equal: " + (colorRes == colorTrim))
 
 
         val pieDataSet = PieDataSet(pieList, "pieList")
+
         pieDataSet.setColors(colorsArr,this)
+
         pieDataSet.valueTextSize = 16f
         pieDataSet.sliceSpace = 2f
 

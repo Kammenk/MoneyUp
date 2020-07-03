@@ -6,5 +6,12 @@
     <color name="colorInactive">#8d8ed3</color>
     <color name="colorMain">#2562BD</color>
     <color name="colorAlt">#25BD37</color>
+    <color name="colorCategoryOne">#BD258A</color>
+    <color name="colorCategoryTwo">#BD9725</color>
+    <color name="colorCategoryThree">#B8BD25</color>
+    <color name="colorCategoryFour">#25A4BD</color>
+    <color name="colorCategoryFive">#BD2553</color>
+    <color name="colorCategorySix">#6725BD</color>
+    <color name="colorDefaultSlice">#C6C6C6</color>
     <color name="colorError">#BD2525</color>
 </resources>
