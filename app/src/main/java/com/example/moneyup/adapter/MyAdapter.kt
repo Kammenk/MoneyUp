@@ -1,10 +1,7 @@
-package com.example.moneyup
+package com.example.moneyup.adapter
 
 import android.content.Context
-import android.content.res.ColorStateList
 import android.graphics.Color
-import android.graphics.drawable.Drawable
-import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +11,8 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.moneyup.data.CategoryItem
+import com.example.moneyup.R
 
 class MyAdapter(private val myDataset: ArrayList<CategoryItem>): RecyclerView.Adapter<MyAdapter.ViewHolder>() {
 
@@ -53,7 +52,7 @@ class MyAdapter(private val myDataset: ArrayList<CategoryItem>): RecyclerView.Ad
 
 
     // Create new views (invoked by the layout manager)
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         // create a new view
         val textView = LayoutInflater.from(parent.context)
             .inflate(R.layout.budget_list_item, parent, false) as LinearLayout

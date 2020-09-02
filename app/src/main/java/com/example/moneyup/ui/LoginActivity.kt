@@ -1,4 +1,4 @@
-package com.example.moneyup
+package com.example.moneyup.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,9 +6,9 @@ import android.view.View
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.cardview.widget.CardView
+import com.example.moneyup.AccountCreationValidator
+import com.example.moneyup.R
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -69,7 +69,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
      fun moveToSignInPage(view: View) {
-        val intent = Intent(this,SignInActivity::class.java)
+        val intent = Intent(this, SignInActivity::class.java)
         startActivity(intent)
     }
 
@@ -82,7 +82,7 @@ class LoginActivity : AppCompatActivity() {
         val usernameValidationStr = accountChecker.usernameCheck(username)
         val passwordValidationStr = accountChecker.passwordCheck(password)
 
-        if(usernameValidationStr.equals("")){
+        if(usernameValidationStr == ""){
             usernameErrorMessage.visibility = View.GONE
             usernameValid = true
         } else {
@@ -91,7 +91,7 @@ class LoginActivity : AppCompatActivity() {
             usernameErrorMessage.text = usernameValidationStr
         }
 
-        if(passwordValidationStr.equals("")){
+        if(passwordValidationStr == ""){
             passwordErrorMessage.visibility = View.GONE
             passwordValid = true
         } else {
@@ -101,7 +101,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         if(usernameValid && passwordValid){
-            val intent = Intent(this,OverviewActivity::class.java)
+            val intent = Intent(this, WrapperActivity::class.java)
             startActivity(intent)
 
         }

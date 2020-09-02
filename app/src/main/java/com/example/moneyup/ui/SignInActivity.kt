@@ -1,8 +1,9 @@
-package com.example.moneyup
+package com.example.moneyup.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import com.example.moneyup.R
 
 class SignInActivity : AppCompatActivity() {
 

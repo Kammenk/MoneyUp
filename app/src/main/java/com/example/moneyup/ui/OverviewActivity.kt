@@ -1,9 +1,12 @@
-package com.example.moneyup
+package com.example.moneyup.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.moneyup.data.CategoryItem
+import com.example.moneyup.R
+import com.example.moneyup.adapter.MyAdapter
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.data.PieData
@@ -31,19 +34,83 @@ class OverviewActivity : AppCompatActivity() {
 
         val sampleRecyclerList = arrayListOf<CategoryItem>()
         //val categoryItem = CategoryItem("red","sda","asdas",123,"askjdal")
-        sampleRecyclerList.add(CategoryItem("#25BD37","ic_shopping_basket","Shopping",110,"Some note"))
-        sampleRecyclerList.add(CategoryItem("#2562BD","ic_movie_filter","Leisure",0,"Some note"))
-        sampleRecyclerList.add(CategoryItem("#BD258A","ic_shopping_cart","Groceries",0,"Some note"))
-        sampleRecyclerList.add(CategoryItem("#BD9725","ic_restaurant","Restaurant",0,"Some note"))
-        sampleRecyclerList.add(CategoryItem("#B8BD25","ic_card_giftcard","Gifts",0,"Some note"))
-        sampleRecyclerList.add(CategoryItem("#BD2553","ic_people_outline","Family",0,"Some note"))
-        sampleRecyclerList.add(CategoryItem("#6725BD","ic_beach_access","Vacation",0,"Some note"))
+        sampleRecyclerList.add(
+            CategoryItem(
+                "#25BD37",
+                "ic_shopping_basket",
+                "Shopping",
+                110,
+                "Some note"
+            )
+        )
+        sampleRecyclerList.add(
+            CategoryItem(
+                "#2562BD",
+                "ic_movie_filter",
+                "Leisure",
+                0,
+                "Some note"
+            )
+        )
+        sampleRecyclerList.add(
+            CategoryItem(
+                "#BD258A",
+                "ic_shopping_cart",
+                "Groceries",
+                0,
+                "Some note"
+            )
+        )
+        sampleRecyclerList.add(
+            CategoryItem(
+                "#BD9725",
+                "ic_restaurant",
+                "Restaurant",
+                0,
+                "Some note"
+            )
+        )
+        sampleRecyclerList.add(
+            CategoryItem(
+                "#B8BD25",
+                "ic_card_giftcard",
+                "Gifts",
+                0,
+                "Some note"
+            )
+        )
+        sampleRecyclerList.add(
+            CategoryItem(
+                "#BD2553",
+                "ic_people_outline",
+                "Family",
+                0,
+                "Some note"
+            )
+        )
+        sampleRecyclerList.add(
+            CategoryItem(
+                "#6725BD",
+                "ic_beach_access",
+                "Vacation",
+                0,
+                "Some note"
+            )
+        )
 
         val colorsArr = IntArray(sampleRecyclerList.size)
         val defColorsArr = IntArray(1)
         defColorsArr[0] = R.color.colorDefaultSlice
-        val savedColorsArr = intArrayOf(R.color.colorAlt,R.color.colorMain,R.color.colorCategoryOne,R.color.colorCategoryTwo,
-            R.color.colorCategoryThree,R.color.colorCategoryFour,R.color.colorCategoryFive,R.color.colorCategorySix)
+        val savedColorsArr = intArrayOf(
+            R.color.colorAlt,
+            R.color.colorMain,
+            R.color.colorCategoryOne,
+            R.color.colorCategoryTwo,
+            R.color.colorCategoryThree,
+            R.color.colorCategoryFour,
+            R.color.colorCategoryFive,
+            R.color.colorCategorySix
+        )
         viewManager = LinearLayoutManager(this)
         viewAdapter = MyAdapter(sampleRecyclerList)
 
@@ -68,7 +135,8 @@ class OverviewActivity : AppCompatActivity() {
             val colorFromCategories = sampleRecyclerList[x].mColor
             val colorFromCatTrimmed = colorFromCategories.toLowerCase().replace("#","").trim()
             for(x in savedColorsArr.indices) {
-                val colorConverted = resources.getString(savedColorsArr[x]).substring(3,resources.getString(R.color.colorAlt.toString().toInt()).length)
+                val colorConverted = resources.getString(savedColorsArr[x]).substring(3,resources.getString(
+                    R.color.colorAlt.toString().toInt()).length)
                 if(colorFromCatTrimmed == colorConverted){
                     colorToAdd = savedColorsArr[x]
                 } else {
@@ -78,7 +146,8 @@ class OverviewActivity : AppCompatActivity() {
 
             colorsArr[x] = colorToAdd
         }
-        val colorRes: String = resources.getString(R.color.colorAlt.toString().toInt()).substring(3,resources.getString(R.color.colorAlt.toString().toInt()).length)
+        val colorRes: String = resources.getString(R.color.colorAlt.toString().toInt()).substring(3,resources.getString(
+            R.color.colorAlt.toString().toInt()).length)
         val colorTrim: String = "#25BD37".toLowerCase(Locale.ROOT).replace("#","").trim()
         println("COLOR RES $colorRes")
         println("COLOR TRIMMED $colorTrim")

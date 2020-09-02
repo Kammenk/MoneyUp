@@ -1,4 +1,4 @@
-package com.example.moneyup
+package com.example.moneyup.data
 
 /*
 CategoryItem is the blueprint for all categories that are created and exist on the overview/home fragment
