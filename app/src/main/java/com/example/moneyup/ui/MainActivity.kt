@@ -1,8 +1,9 @@
-package com.example.moneyup
+package com.example.moneyup.ui
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.moneyup.R
 import java.util.*
 import kotlin.concurrent.schedule
 
@@ -19,7 +20,7 @@ class MainActivity : AppCompatActivity() {
     private fun moveForward(){
 
         val delay: Long = 1500
-        val intent = Intent(this,LoginActivity::class.java)
+        val intent = Intent(this, LoginActivity::class.java)
         Timer().schedule(delay) {
             startActivity(intent)
         }
